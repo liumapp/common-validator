@@ -1,0 +1,23 @@
+{
+  "name": "common-validator",
+  "version": "1.0.0",
+  "description": "Vue2.0项目中常用的各种验证规则集合，仅适用于国内地区。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liumapp/common-validator.git"
+  },
+  "keywords": [
+    "vue2.0",
+    "validator"
+  ],
+  "author": "liumapp <liumapp.com@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/liumapp/common-validator/issues"
+  },
+  "homepage": "https://github.com/liumapp/common-validator#readme"
+}
