@@ -50,11 +50,11 @@ commonValidator.install = function (Vue, options) {
     } else {
       callback();
     }
-  }
+  };
 
   let idcard = function (rule, value, callback) {
 
-  }
+  };
 
 }
 
