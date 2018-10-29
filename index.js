@@ -53,7 +53,13 @@ commonValidator.install = function (Vue, options) {
   };
 
   let idcard = function (rule, value, callback) {
-
+    if (!value) {
+      return callback(new Erro('身份证号码不能为空'));
+    } else if (!idcardValidator.idCardValidate(value)) {
+      callback('身份证格式不正确');
+    } else {
+      callback();
+    }
   };
 
 }
