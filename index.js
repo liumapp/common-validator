@@ -5,7 +5,7 @@
  * @homepage http://www.liumapp.com
  * @date 2018/10/29
  */
-import idCard from './lib/IdCard';
+import idcardValidator from './lib/idcardValidator';
 import phoneValidator from './lib/phoneValidator';
 
 let commonValidator = {};
@@ -31,23 +31,16 @@ commonValidator.install = function (Vue, options) {
       case 'idcard':
         idcard(rule, value, callback);
         break;
-      case 'hello':
-        hello();
-        break;
       default:
         console.log('get the wrong type !')
     }
   };
 
-  ['phone', 'idcard', 'hello'].forEach(function (type){
+  ['phone', 'idcard', 'hello'].forEach(function (type) {
     Vue.prototype.$commonValidator[type] = function (rule, value, callback) {
       return Vue.prototype.$commonValidator(type, rule, value, callback)
     }
   });
-
-  let hello = function () {
-    alert(phoneValidator.rule);
-  }
 
   let phone = function (rule, value, callback) {
     if (!value) {
