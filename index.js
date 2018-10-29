@@ -7,6 +7,7 @@
  */
 import idcardValidator from './lib/idcardValidator';
 import phoneValidator from './lib/phoneValidator';
+import realnameValidator from './lib/realnameValidator';
 
 let commonValidator = {};
 
@@ -31,22 +32,35 @@ commonValidator.install = function (Vue, options) {
       case 'idcard':
         idcard(rule, value, callback);
         break;
+      case 'realname':
+        realname(rule, value, callback);
+        break;
       default:
         console.log('get the wrong type !')
     }
   };
 
-  ['phone', 'idcard', 'hello'].forEach(function (type) {
+  ['realname', 'phone', 'idcard', 'hello'].forEach(function (type) {
     Vue.prototype.$commonValidator[type] = function (rule, value, callback) {
       return Vue.prototype.$commonValidator(type, rule, value, callback)
     }
   });
 
+  let realname = function (rule, value, callback) {
+    if (!value) {
+      return callback(new Error('姓名不能为空'));
+    } else if (!realnameValidator.validateRealName(value)) {
+      callback(new Error('姓名格式不对'));
+    } else {
+      callback();
+    }
+  };
+
   let phone = function (rule, value, callback) {
     if (!value) {
       return callback(new Error('手机号不能为空'));
     } else if (!phoneValidator.rule.test(value)) {
-      callback('手机号格式不正确');
+      callback(new Error('手机号格式不正确'));
     } else {
       callback();
     }
@@ -54,7 +68,7 @@ commonValidator.install = function (Vue, options) {
 
   let idcard = function (rule, value, callback) {
     if (!value) {
-      return callback(new Erro('身份证号码不能为空'));
+      return callback(new Error('身份证号码不能为空'));
     } else if (!idcardValidator.idCardValidate(value)) {
       callback('身份证格式不正确');
     } else {
